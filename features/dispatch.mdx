@@ -1,0 +1,35 @@
+---
+title: Dispatch
+description: Voice-activated commands that trigger system actions, open apps, and run custom workflows.
+---
+
+## Overview
+
+Dispatch is Resonant's voice command router. Instead of dictating text, you can speak commands that trigger system actions — opening apps, running scripts, toggling settings, and more.
+
+## How it works
+
+When dictation is active, Resonant listens for command phrases. If a spoken phrase matches a registered command, it executes the associated action instead of inserting text.
+
+## Built-in commands
+
+Resonant includes built-in commands for common actions:
+
+| Command | Action |
+|---|---|
+| "Open [app name]" | Launches the specified application |
+| "Switch to [app name]" | Brings the specified app to the foreground |
+| "New line" / "New paragraph" | Inserts a line break / double line break |
+| "Select all" | Selects all text in the current field |
+| "Undo" / "Redo" | Triggers undo/redo in the active app |
+
+## Custom commands
+
+You can define custom Dispatch commands in **Settings → Dispatch**. Each command consists of:
+
+- **Trigger phrase** — what you say to activate it
+- **Action** — what happens (open URL, run shell command, send keystroke, etc.)
+
+<Tip>
+  Dispatch is especially useful for hands-free workflows — controlling your computer while away from the keyboard.
+</Tip>

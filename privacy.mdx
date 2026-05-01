@@ -1,0 +1,52 @@
+---
+title: Privacy & Security
+description: How Resonant keeps your voice data private and secure with local-first processing and zero data retention.
+---
+
+## Local-first by design
+
+Resonant processes all audio on your device. Your voice is never uploaded to a server for transcription. The speech-to-text models run locally using your device's hardware:
+
+- **Mac:** Apple Neural Engine (ANE) for maximum performance
+- **Windows:** CPU or GPU inference using optimized local models
+
+## What stays on your device
+
+| Data | Location |
+|---|---|
+| Audio recordings | Local only — never uploaded |
+| Transcripts | Local database on your machine |
+| Meeting recordings | Local only |
+| Journal entries | Local only |
+| Ambient context | Local only |
+| Voice models | Downloaded once, run locally |
+
+## What leaves your device (opt-in only)
+
+These features are optional and clearly marked in the app:
+
+| Feature | What's sent | When |
+|---|---|---|
+| **Cloud Cleanup** (Pro) | Transcript text (not audio) | When you enable Cloud Cleanup |
+| **Meeting Distillation** (Pro) | Transcript text (not audio) | When you request a summary |
+| **Cloud Sync** (Pro) | Encrypted transcripts | When you enable sync |
+| **Account & billing** | Email, subscription status | When you create an account |
+
+## Zero data retention
+
+When transcript text is sent to cloud LLMs for cleanup or summarization, it is processed in real-time and not stored. Resonant uses zero-data-retention API agreements with all LLM providers.
+
+## No telemetry on audio
+
+Resonant collects basic app usage telemetry (feature usage, crash reports) via PostHog, but **never** collects or transmits audio data, transcript content, or meeting recordings.
+
+## HIPAA Mode
+
+For healthcare and high-security environments, Resonant offers a HIPAA-compatible configuration:
+
+- All cloud features disabled
+- Local-only encryption for stored transcripts
+- Audit logging for access events
+- No telemetry of any kind
+
+Contact [support](https://www.onresonant.com/contact) to learn more about HIPAA Mode.
