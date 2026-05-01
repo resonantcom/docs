@@ -1,0 +1,38 @@
+---
+title: Meetings
+description: Record and transcribe Zoom, Teams, and Google Meet calls with speaker labels and automatic AI summaries.
+---
+
+## Overview
+
+Resonant can detect when you join a video call (Zoom, Microsoft Teams, Google Meet) and automatically begin recording and transcribing the conversation.
+
+Transcripts include speaker labels, timestamps, and — with a Pro subscription — AI-generated summaries with action items.
+
+## How it works
+
+1. **Auto-detection** — Resonant monitors active windows for meeting apps using macOS Accessibility APIs. When a meeting window becomes active, Resonant offers to start recording.
+2. **Audio capture** — System audio and microphone input are captured locally.
+3. **Transcription** — Audio is transcribed on-device in real-time using the same speech models as dictation.
+4. **Post-processing** — After the meeting ends, the transcript is cleaned up and (optionally) summarized.
+
+## Meeting history
+
+All recorded meetings appear in Resonant's meeting history, searchable by date, participant, or content. You can also query meetings through the [MCP integration](/integrations/mcp).
+
+## Distillation (Pro)
+
+With Pro, you can generate structured summaries from meeting transcripts:
+
+- Key decisions
+- Action items with assignees
+- Follow-up questions
+- Topic breakdown
+
+Distillation sends the transcript text (not audio) to a cloud LLM. This is opt-in per meeting.
+
+## Calendar integration
+
+Resonant can connect to your calendar to automatically associate recordings with scheduled events. Recordings are tagged with the meeting title, attendees, and time slot.
+
+If you record an ad-hoc conversation, you can retroactively link it to a calendar event (**rebinding**).

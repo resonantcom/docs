@@ -1,0 +1,185 @@
+---
+title: MCP tool reference
+description: Complete reference for all 11 Resonant MCP tools — parameters, response formats, and example queries.
+---
+
+## Overview
+
+Resonant exposes 11 tools through its MCP server. Each tool is callable by any MCP-compatible AI assistant. See the [MCP setup guide](/integrations/mcp) for connection instructions.
+
+---
+
+## search
+
+Full-text search across all dictations, meetings, and memos. Returns matched items with timestamps, app context, and surrounding text.
+
+<ParamField path="query" type="string" required>
+  Search query
+</ParamField>
+<ParamField path="type" type="string">
+  Filter by type: `"dictation"`, `"meeting"`, `"memo"`, or `"all"` (default)
+</ParamField>
+<ParamField path="limit" type="number">
+  Max results to return (default: 10)
+</ParamField>
+<ParamField path="date_from" type="string">
+  Start date filter (ISO 8601)
+</ParamField>
+<ParamField path="date_to" type="string">
+  End date filter (ISO 8601)
+</ParamField>
+
+**Example:** "What did I say about JWT migration?"
+
+**Response:** Array of matches with id, type, text snippet, timestamp, app context, and relevance score.
+
+---
+
+## recent_activity
+
+Returns a feed of recent voice activity — dictations, memos, meetings — ordered by time.
+
+<ParamField path="limit" type="number">
+  Max items to return (default: 20)
+</ParamField>
+<ParamField path="type" type="string">
+  Filter by type: `"dictation"`, `"meeting"`, `"memo"`, or `"all"`
+</ParamField>
+
+**Example:** "What have I been working on today?"
+
+**Response:** Array of recent items with id, type, text preview, timestamp, and app context.
+
+---
+
+## get_journal
+
+Retrieves the auto-generated daily journal for a specific date. Includes timeline, highlights, and task blocks grouped by app.
+
+<ParamField path="date" type="string">
+  Date to retrieve (ISO 8601). Defaults to today.
+</ParamField>
+
+**Example:** "Show me yesterday's journal"
+
+**Response:** Journal object with date, timeline entries, highlights, task blocks, and word count.
+
+---
+
+## ambient_timeline
+
+Returns the ambient context timeline — a chronological record of app switches, window titles, URLs, and dwell time.
+
+<ParamField path="date" type="string">
+  Date to query (default: today)
+</ParamField>
+<ParamField path="start" type="string">
+  Start time filter (HH:MM)
+</ParamField>
+<ParamField path="end" type="string">
+  End time filter (HH:MM)
+</ParamField>
+
+**Example:** "What was I doing between 2pm and 4pm?"
+
+**Response:** Array of timeline entries with app, window title, URL, start time, end time, and duration.
+
+---
+
+## ambient_app_usage
+
+Aggregated app usage statistics from ambient context. Shows which apps you used, for how long, and when.
+
+<ParamField path="date" type="string">
+  Date to query (default: today)
+</ParamField>
+<ParamField path="start" type="string">
+  Start time filter (HH:MM)
+</ParamField>
+<ParamField path="end" type="string">
+  End time filter (HH:MM)
+</ParamField>
+
+**Example:** "How much time did I spend in Slack today?"
+
+**Response:** Array of app objects with name, total duration, session count, and time-of-day breakdown.
+
+---
+
+## get_dictation
+
+Retrieves a specific dictation by ID with full metadata.
+
+<ParamField path="id" type="string" required>
+  Dictation ID
+</ParamField>
+
+**Example:** "Get the details of that dictation I did in VS Code"
+
+**Response:** Dictation object with raw transcript, cleaned text, app, window title, URL, duration, and timestamp.
+
+---
+
+## get_meeting
+
+Retrieves a full meeting transcript with speaker labels, timestamps, and meeting metadata.
+
+<ParamField path="id" type="string" required>
+  Meeting ID
+</ParamField>
+
+**Example:** "Pull the transcript from my 10am meeting"
+
+**Response:** Meeting object with transcript lines (speaker, text, timestamp), total duration, app, and participant count.
+
+---
+
+## get_memo
+
+Retrieves a voice memo with its auto-generated title, AI summary, transcript, and metadata.
+
+<ParamField path="id" type="string" required>
+  Memo ID
+</ParamField>
+
+**Example:** "Find that memo about the API redesign"
+
+**Response:** Memo object with title, summary, transcript, duration, and timestamp.
+
+---
+
+## get_stats
+
+Returns voice workspace statistics — word counts, dictation counts, streaks, and progression.
+
+<ParamField path="period" type="string">
+  `"today"`, `"week"`, `"month"`, or `"all"` (default: `"all"`)
+</ParamField>
+
+**Example:** "How many words have I dictated this week?"
+
+**Response:** Stats object with total words, dictation count, meeting hours, streak days, and progression level.
+
+---
+
+## get_context
+
+Returns the current ambient context snapshot — what's on screen right now.
+
+No parameters.
+
+**Example:** "What am I looking at right now?"
+
+**Response:** Context object with active app, window title, URL, selected text, and visible text snippets.
+
+---
+
+## get_config
+
+Returns the current Resonant configuration.
+
+No parameters.
+
+**Example:** "What model is Resonant using?"
+
+**Response:** Config object with active model, language, trigger key, cloud cleanup status, and enabled features.

@@ -1,0 +1,123 @@
+---
+title: MCP setup guide
+description: Connect Resonant's MCP server to Claude Code, Cursor, VS Code, and other MCP-compatible AI tools.
+---
+
+## Overview
+
+Resonant includes a built-in [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server. Once connected, your AI tools can search your dictations, query meeting transcripts, browse your journal, and access ambient context — all from natural language prompts.
+
+The MCP server starts automatically when Resonant launches. No additional setup is needed on the Resonant side.
+
+## Prerequisites
+
+- **Resonant** installed and running on your Mac ([download](https://www.onresonant.com/download))
+- macOS 14+ on Apple Silicon (M1, M2, M3, M4)
+- An MCP-compatible AI tool (Claude Code, Cursor, VS Code, Windsurf, etc.)
+
+---
+
+## Claude Code (auto-discovery)
+
+Claude Code auto-discovers Resonant's MCP server. No configuration required.
+
+<Steps>
+  <Step title="Install and open Resonant" />
+  <Step title="Open Claude Code" />
+  <Step title="Try a query">
+    Ask: "What did I dictate today?"
+  </Step>
+</Steps>
+
+Claude Code will detect Resonant's MCP server and use its tools automatically. You'll see tool calls like `search()` or `get_journal()` in Claude's responses.
+
+---
+
+## Cursor (auto-discovery)
+
+Cursor also auto-discovers Resonant's MCP server when both are running.
+
+<Steps>
+  <Step title="Install and open Resonant" />
+  <Step title="Open Cursor" />
+  <Step title="Try a query">
+    In Cursor's AI chat, ask: "Search my recent dictations for mentions of auth"
+  </Step>
+</Steps>
+
+---
+
+## VS Code & other MCP clients (manual config)
+
+For VS Code, Windsurf, and other MCP-compatible tools, add Resonant's server to your MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "resonant": {
+      "command": "/Applications/Resonant.app/Contents/Resources/mcp-server",
+      "transport": "stdio"
+    }
+  }
+}
+```
+
+Add this to your MCP settings file. The location varies by client:
+
+- **VS Code:** `.vscode/mcp.json`
+- **Windsurf:** `~/.windsurf/mcp.json`
+
+---
+
+## Verifying the connection
+
+To confirm the MCP server is working, ask your AI tool any of these:
+
+- "What Resonant tools are available?"
+- "Show my recent voice activity"
+- "What model is Resonant using?"
+- "Search my dictations for \[any keyword\]"
+
+If the AI tool responds with data from Resonant (rather than saying it doesn't have access), the connection is working.
+
+---
+
+## Example queries
+
+| Query | Tool used |
+|---|---|
+| "What did I discuss in my last meeting?" | `search` → `get_meeting` |
+| "What was I working on yesterday?" | `ambient_timeline` |
+| "Find all my dictations about the API redesign" | `search` |
+| "Show me today's journal" | `get_journal` |
+| "How many words have I dictated this week?" | `get_stats` |
+| "What apps did I use most today?" | `ambient_app_usage` |
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="AI tool doesn't see Resonant's tools">
+    Make sure Resonant is running. The MCP server only starts when Resonant is active. Restart your AI tool after launching Resonant.
+  </Accordion>
+  <Accordion title="Queries return empty results">
+    The MCP server queries your local voice workspace. If you just installed Resonant, use it for a day first — dictate, record a meeting, or capture some memos. The tools need data to search.
+  </Accordion>
+  <Accordion title="Manual config not working">
+    Verify the path to the MCP server binary exists: `/Applications/Resonant.app/Contents/Resources/mcp-server`. If Resonant is installed elsewhere, adjust the path.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="MCP Tool Reference" icon="wrench" href="/integrations/mcp-tools">
+    Full documentation for all 11 MCP tools with parameters and examples.
+  </Card>
+  <Card title="Dictation" icon="microphone" href="/features/dictation">
+    Learn about voice models, formatting, and dictation settings.
+  </Card>
+</CardGroup>

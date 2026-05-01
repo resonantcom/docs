@@ -1,0 +1,48 @@
+---
+title: Dictation
+description: Voice-to-text that works in every app. Resonant delivers transcribed text directly into the active text field with smart punctuation and formatting.
+---
+
+## How it works
+
+When you press the trigger key, Resonant begins capturing audio from your microphone. Speech is transcribed locally using a neural speech model running on your device's hardware accelerator (Apple Neural Engine on Mac, CPU/GPU on Windows).
+
+The transcribed text is delivered directly into whatever text field is currently focused — no copy-paste required.
+
+## Voice models
+
+Resonant ships with and supports multiple speech-to-text models. You can switch models in **Settings → Models**.
+
+Models run entirely on-device. Larger models are more accurate but use more memory and may have slightly higher latency on older hardware.
+
+## Smart formatting
+
+Resonant automatically handles:
+
+- **Punctuation** — periods, commas, question marks, and exclamation points
+- **Capitalization** — sentence-start and proper noun capitalization
+- **Numbers** — "twenty-three" becomes "23" via inverse text normalization (ITN)
+- **New lines** — say "new line" or "new paragraph" for line breaks
+
+## Trigger key
+
+The default trigger key varies by platform:
+
+| Platform | Default |
+|---|---|
+| macOS | `Fn` (Globe key) double-press |
+| Windows | `Ctrl + Shift + Space` |
+
+You can change the trigger key in **Settings → Input**.
+
+## Cloud Cleanup (Pro)
+
+Pro subscribers can optionally send transcripts to an LLM for grammar correction, filler-word removal, and sentence restructuring. This is an opt-in feature — the raw audio never leaves your device, only the text transcript is sent for cleanup.
+
+## Acoustic biasing
+
+Resonant reads text visible on your screen (via OCR) to bias the speech model toward domain-specific vocabulary. This improves accuracy for technical terms, project names, and jargon that the base model might not recognize.
+
+<Note>
+  Acoustic biasing requires the Accessibility permission on macOS.
+</Note>
