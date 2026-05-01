@@ -15,9 +15,7 @@
 - Use "Resonant" (capitalized), never "resonant" in prose
 - Use "dictation" not "transcription" for voice-to-text input
 - Use "meeting recording" not "meeting capture"
-- Use "dispatch" for voice commands, not "voice control"
 - Use "journal" for daily activity log
-- Use "relay" for phone-as-microphone feature
 - Use "voice workspace" not "voice assistant"
 
 ## Style preferences

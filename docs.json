@@ -22,9 +22,7 @@
             "pages": [
               "features/dictation",
               "features/meetings",
-              "features/dispatch",
-              "features/journal",
-              "features/relay"
+              "features/journal"
             ]
           },
           {
